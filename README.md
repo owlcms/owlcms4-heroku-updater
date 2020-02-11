@@ -6,3 +6,4 @@ detects the ones that are owlcms modules (currently, owlcms4 and publicresults).
 version available from its source (prerelease applications are updated to the latest prerelease, stable applications to the latest
 stable.
 
+![image](https://user-images.githubusercontent.com/678663/74204710-348c2480-4c6c-11ea-82d7-4908fabb296c.png)
