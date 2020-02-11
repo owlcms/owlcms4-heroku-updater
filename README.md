@@ -5,12 +5,14 @@ Updater for cloud installations of owlcms4 and publicresults
 
 OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Relay](https://github.com/owlcms/publicresults-heroku) can be deployed to Heroku using a simple button.  But hundreds of people could conceivably deploy that way, there is no automation that would cause an update to the master to update the deployments.  Heroku does not provide an automatic "redeploy" button either.
 
-#### On-demand Updating
+#### Updating Existing OWLCMS installations
 
-This program is downloaded to a user's workstation. 
+> *This program will update installations done using the * `Deploy to Heroku` *button after release 4.5.* For older installations, proceed as before (`heroku` command-line or uninstall/reinstall).
+
+This program is downloaded to a user's workstation from the [Releases](https://github.com/jflamy/owlcms4-heroku-updater/releases/latest) page.  On Windows, you can double-click on the .exe.  On other platforms, the program is run from the command-line.
 
 1. If the user has not used the `heroku` program or this updater on the machine before, a prompt for the Heroku username and password is given.
-2. The program queries Heroku for the user's applications and detects the ones that are owlcms modules (currently, owlcms4 and publicresults).  This works because the deployment button adds a configuration variable that defines where the program came from)
+2. The program queries Heroku for the user's applications and detects the ones that are owlcms modules (currently, `owlcms4` and `publicresults`).  This works because the deployment button now adds a configuration variable that defines where the program came from)
 3. Each application is then updated to the latest version available from its source (prerelease applications are updated to the latest prerelease, stable applications to the latest stable.)  
 4. The API token is stored locally so that subsequent updates do not require the password.
 
