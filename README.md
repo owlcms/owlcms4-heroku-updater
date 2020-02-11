@@ -20,11 +20,11 @@ This program is downloaded to a user's workstation.
 
 By default, on Windows, the program opens a new command-line Window.  Using these options requires that you also give `-createshell false`
 
-| Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                           | Description                                                  |
-| ---------------------------------------- | ------------------------------------------------------------ |
-| <nobr>`-createshell false`</nobr> | true or false.  If false, open a new terminal window.  Only works on Windows  (ignored on other platforms) |
-| -apikey *keyvalue*                       | Ignore the Heroku access token currently stored in the home directory `.netrc` (`_netrc` on Windows).  Use instead the provided token. The token can be obtained for a given user from the [User Account](https://dashboard.heroku.com/account) page. |
-| -app *appName*                           | Used together with `-archive`, the name of a single application to be updated.  This is used to revert to a prior version in the event of a glitch. |
-| `-archive` *tarball*                     | The explicit URL of a .tar.gz file to be used to rebuild the application.  These `.tar.gz` files are found in the Releases section of the [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and [Public Results Relay](https://github.com/owlcms/publicresults-heroku) repositories.  Use the files with `-heroku.tar.gz` in the name. |
-|                                          |                                                              |
+| Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <nobr>`-createshell false`</nobr>                            | true or false. If true, open a new terminal window (default value on Windows).  If false, run in the current command-line interface without opening a new window (useful for scripts).  Only works on Windows  (ignored on other platforms) |
+| -apikey *keyvalue*                                           | Ignore the Heroku access token currently stored in the home directory `.netrc` (`_netrc` on Windows).  Use instead the provided token. The token can be obtained for a given user from the [User Account](https://dashboard.heroku.com/account) page. |
+| -app *appName*                                               | Used together with `-archive`, the name of a single application to be updated.  This is used to revert to a prior version in the event of a glitch. |
+| `-archive` *tarball*                                         | The explicit URL of a .tar.gz file to be used to rebuild the application.  These `.tar.gz` files are found in the Releases section of the [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and [Public Results Relay](https://github.com/owlcms/publicresults-heroku) repositories.  Use the files with `-heroku.tar.gz` in the name. |
+|                                                              |                                                              |
 
