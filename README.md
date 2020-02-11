@@ -20,7 +20,7 @@ This program is downloaded to a user's workstation.
 
 By default, on Windows, the program opens a new command-line Window.  Using these options requires that you also give `-createshell false`
 
-| Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                               | Description                                                  |
+| Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;                           | Description                                                  |
 | ---------------------------------------- | ------------------------------------------------------------ |
 | <nobr>`-createshell false`</nobr> | true or false.  If false, open a new terminal window.  Only works on Windows  (ignored on other platforms) |
 | -apikey *keyvalue*                       | Ignore the Heroku access token currently stored in the home directory `.netrc` (`_netrc` on Windows).  Use instead the provided token. The token can be obtained for a given user from the [User Account](https://dashboard.heroku.com/account) page. |
