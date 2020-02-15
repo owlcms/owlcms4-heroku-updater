@@ -7,7 +7,7 @@ OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) 
 
 #### Updating Existing OWLCMS installations
 
-> *This program will update installations done using the * `Deploy to Heroku` *button after release 4.5.* For older installations, proceed as before (`heroku` command-line or uninstall/reinstall).
+> This program will update installations done using the  `Deploy to Heroku` button *since release 4.5.* For older installations, proceed as before (`heroku` command-line or uninstall/reinstall).
 
 This program is downloaded to a user's workstation from the [Releases](https://github.com/jflamy/owlcms4-heroku-updater/releases/latest) page.  On Windows, you can double-click on the .exe.  On other platforms, the program is run from the command-line.
 
