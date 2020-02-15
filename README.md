@@ -1,4 +1,4 @@
-# Cloud Deployment Updater for OWLCMS4 Apps
+# Cloud Updater for OWLCMS4 Apps
 Updater for cloud installations of owlcms4 and publicresults
 
 #### Rationale
