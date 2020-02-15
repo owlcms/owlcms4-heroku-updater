@@ -3,7 +3,7 @@ Updater for cloud installations of owlcms4 and publicresults
 
 #### Rationale
 
-OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Relay](https://github.com/owlcms/publicresults-heroku) can be deployed to Heroku using a simple button.  But hundreds of people could conceivably deploy that way, there is no automation that would cause an update to the master to update the deployments.  Heroku does not provide an automatic "redeploy" button either.
+OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Relay](https://github.com/owlcms/publicresults-heroku) can be deployed to Heroku using a simple button.  But since hundreds of people could conceivably deploy that way, Heroku does not provide an automatic mechanism to subscribe to the source and update automatically.  And unfortunately, no "please update me" option either.  This program fills that gap.
 
 #### Updating Existing OWLCMS Cloud Installations
 
