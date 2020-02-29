@@ -19,8 +19,10 @@ import (
 	"strings"
 	"time"
 
+	"github.com/Masterminds/semver"
 	"github.com/bgentry/go-netrc/netrc"
 	"github.com/mitchellh/go-homedir"
+
 	terminal "golang.org/x/crypto/ssh/terminal"
 
 	heroku "github.com/heroku/heroku-go/v5"
@@ -28,7 +30,7 @@ import (
 
 var (
 	apiKey      = flag.String("apikey", "", "api key, default found in .netrc, or via username + password")
-	createshell = flag.String("createshell", "true", "if missing, the program will spawn a cli")
+	createshell = flag.String("createshell", "false", "if missing, the program will spawn a cli")
 
 	appName = flag.String("app", "owlcmsauto", "heroku application to update")
 	// archiveName = flag.String("archivename", "owlcms4-heroku", "basename without .tar.gz")
@@ -83,12 +85,20 @@ func updateAllApps() {
 		appName := app.Name
 		configVars, _ := h.ConfigVarInfoForApp(context.Background(), appName)
 		latestUrl := configVars["OWLCMS_RELEASES"]
+		versionNum := configVars["OWLCMS_VERSION"]
 		if latestUrl != nil {
 			archiveURL, tagName, err := getArchiveName(*latestUrl)
 			if err != nil {
 				fmt.Print(err)
 			} else {
-				updateApp(&appName, tagName, archiveURL)
+				ourVersion, _ := semver.NewVersion(tagName)
+				theirVersion, _ := semver.NewVersion(*versionNum)
+				if ourVersion.GreaterThan(theirVersion) {
+					updateApp(&appName, tagName, archiveURL)
+				} else {
+					fmt.Println(appName + " already up to date  (" + *versionNum + " >= " + tagName + " )")
+				}
+
 			}
 		} else {
 			fmt.Println("skipping " + appName)
@@ -125,13 +135,28 @@ func updateApp(appName *string, tagName string, archiveURL string) {
 		fmt.Print(".")
 		time.Sleep(time.Second)
 	}
-	fmt.Println(" Updated.")
+
+	// fix version number
+	cviar, err := h.ConfigVarInfoForApp(context.Background(), *appName)
+	if err != nil {
+		log.Print(err)
+		defer waitForInput()
+		return
+	}
+	cviar["OWLCMS_VERSION"] = &tagName
+	cviar2, err := h.ConfigVarUpdate(context.Background(), *appName, cviar)
+	if err != nil {
+		log.Print(err)
+		defer waitForInput()
+		return
+	}
+	fmt.Println(" Updated to " + *cviar2["OWLCMS_VERSION"])
 }
 
 func waitForInput() {
-	if runtime.GOOS == "windows" && *createshell == "spawned" {
+	if runtime.GOOS == "windows" { // && *createshell == "spawned"
 		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Enter any key to close. ")
+		fmt.Print("\nHit ENTER to close. ")
 		_, _ = reader.ReadString('\n')
 	}
 }
