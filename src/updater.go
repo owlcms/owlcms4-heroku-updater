@@ -96,7 +96,7 @@ func updateAllApps() {
 				if ourVersion.GreaterThan(theirVersion) {
 					updateApp(&appName, tagName, archiveURL)
 				} else {
-					fmt.Println(appName + "already up to date (" + *versionNum + ">=" + tagName + ")")
+					fmt.Println(appName + " already up to date  (" + *versionNum + " >= " + tagName + " )")
 				}
 
 			}
@@ -154,9 +154,9 @@ func updateApp(appName *string, tagName string, archiveURL string) {
 }
 
 func waitForInput() {
-	if runtime.GOOS == "windows" && *createshell == "spawned" {
+	if runtime.GOOS == "windows" { // && *createshell == "spawned"
 		reader := bufio.NewReader(os.Stdin)
-		fmt.Print("Enter any key to close. ")
+		fmt.Print("\nEnter any key to close. ")
 		_, _ = reader.ReadString('\n')
 	}
 }
