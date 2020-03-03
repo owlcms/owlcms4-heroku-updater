@@ -31,6 +31,7 @@ import (
 var (
 	apiKey      = flag.String("apikey", "", "api key, default found in .netrc, or via username + password")
 	createshell = flag.String("createshell", "false", "if missing, the program will spawn a cli")
+	forceUpdate = flag.String("force", "false", "if true, ignore version number comparison")
 
 	appName = flag.String("app", "owlcmsauto", "heroku application to update")
 	// archiveName = flag.String("archivename", "owlcms4-heroku", "basename without .tar.gz")
@@ -93,7 +94,7 @@ func updateAllApps() {
 			} else {
 				ourVersion, _ := semver.NewVersion(tagName)
 				theirVersion, _ := semver.NewVersion(*versionNum)
-				if ourVersion.GreaterThan(theirVersion) {
+				if ourVersion.GreaterThan(theirVersion) || *forceUpdate == "true" {
 					updateApp(&appName, tagName, archiveURL)
 				} else {
 					fmt.Println(appName + " already up to date  (" + *versionNum + " >= " + tagName + " )")
