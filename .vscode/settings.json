@@ -8,5 +8,6 @@
         "repoowner",
         "semver"
     ],
-    "cSpell.diagnosticLevel": "Hint"
+    "cSpell.diagnosticLevel": "Hint",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }
