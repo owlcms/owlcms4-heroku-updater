@@ -123,6 +123,19 @@ func processApp(h *v5.Service, appName string) (err error) {
 	} else {
 		fmt.Println(appName + " already up to date  (" + *versionNum + " >= " + tagName + " )")
 	}
+
+	// ourVersion, err = semver.NewVersion("4.7.4+1")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// } else {
+	// 	theirVersion, _ = semver.NewVersion("4.7.4")
+	// 	if theirVersion.LessThan(*ourVersion) {
+	// 		fmt.Println(theirVersion, "<", ourVersion)
+	// 	} else {
+	// 		fmt.Println(theirVersion, ">=", ourVersion)
+	// 	}
+	// }
+
 	return nil
 }
 
