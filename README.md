@@ -1,9 +1,4 @@
-# Cloud Updater for OWLCMS4 Apps
-Updater for cloud installations of owlcms4 and publicresults
-
-#### Rationale
-
-#### Updating Existing OWLCMS Cloud Installations
+# Update Existing owlcms and publicresults Cloud Installations
 
 OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Relay](https://github.com/owlcms/publicresults-heroku) can be deployed to Heroku using a simple button.
 
