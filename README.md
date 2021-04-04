@@ -20,7 +20,7 @@ This program is downloaded to a user's workstation from the [Releases](https://g
 
 #### Command-line options
 
-By default, on Windows, the program opens a new command-line Window.  Using these options requires that you also give `-createshell false`
+By default, on Windows, the program opens a new command-line Window.  If you want to use these you will need to use `-createshell false`
 
 | Option&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Description                                                  |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
