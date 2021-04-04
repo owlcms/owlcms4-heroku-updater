@@ -3,13 +3,13 @@ Updater for cloud installations of owlcms4 and publicresults
 
 #### Rationale
 
-OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Relay](https://github.com/owlcms/publicresults-heroku) can be deployed to Heroku using a simple button.  But since hundreds of people could conceivably deploy that way, Heroku does not provide an automatic mechanism to subscribe to the source and update automatically.  And unfortunately, no "please update me" option either.  This program fills that gap.
-
 #### Updating Existing OWLCMS Cloud Installations
 
-> This program will update installations done using the  `Deploy to Heroku` button.
+OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Relay](https://github.com/owlcms/publicresults-heroku) can be deployed to Heroku using a simple button.
 
-This program is downloaded to a user's workstation from the [Releases](https://github.com/jflamy/owlcms4-heroku-updater/releases/latest) page.  On Windows, you can simply double-click on the .exe.  On other platforms, the program is run from the command-line.
+> This program will update installations done using the  `Deploy to Heroku` button to the latest version
+
+This program is downloaded to a user's workstation from the [Releases](https://github.com/jflamy/owlcms4-heroku-updater/releases/latest) page.  **On Windows, you can simply download then double-click on the `updater-windows-64.exe` file**.  On other platforms, the program is run from the command-line.
 
 1. If the user has not used the `heroku` program or this updater on the machine before, a prompt for the Heroku username and password is given. The API token is stored locally so that subsequent updates do not require the password.
 2. The program fetches the list of the user's Heroku applications and detects the ones that are for owlcms (currently, `owlcms4` and `publicresults`).
