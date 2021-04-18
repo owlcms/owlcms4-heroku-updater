@@ -1,24 +1,26 @@
-# Cloud Updater for OWLCMS4 Apps
+# Cloud Updater for OWLCMS Apps
 Updater for cloud installations of owlcms4 and publicresults
 
 #### Rationale
 
-OWLCMS applications such as [OWLCMS4](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Relay](https://github.com/owlcms/publicresults-heroku) can be deployed to Heroku using a simple button.  But since hundreds of people could conceivably deploy that way, Heroku does not provide an automatic mechanism to subscribe to the source and update automatically.  And unfortunately, no "please update me" option either.  This program fills that gap.
+OWLCMS applications such as [OWLCMS](https://github.com/owlcms/owlcms4-heroku) and its [Public Results Scoreboard](https://github.com/owlcms/publicresults-heroku) are deployed to Heroku using a simple button.  Unfortunately, there is no Heroku-provided way to update the application after the fact.  This program provides that capability.
 
 #### Updating Existing OWLCMS Cloud Installations
 
-> This program will update installations done using the  `Deploy to Heroku` button *since release 4.5.* For older installations, proceed as before (`heroku` command-line or uninstall/reinstall).
+> This program will update installations done using the  `Deploy to Heroku` button
 
 This program is downloaded to a user's workstation from the [Releases](https://github.com/jflamy/owlcms4-heroku-updater/releases/latest) page.  On Windows, you can double-click on the .exe.  On other platforms, the program is run from the command-line.
 
 1. If the user has not used the `heroku` program or this updater on the machine before, a prompt for the Heroku username and password is given.
-2. The program queries Heroku for the user's applications and detects the ones that are owlcms modules (currently, `owlcms4` and `publicresults`).  This works because the OWLCMS deployment button, starting with version 4.5, adds a configuration variable that defines where the program came from)
+2. The program queries Heroku for the user's applications and detects the ones that are owlcms modules (currently, `owlcms4` and `publicresults`). 
 3. Each application is then updated, if needed, to the latest version available from its source (prerelease applications are updated to the latest prerelease, stable applications to the latest stable.)  
 4. The API token is stored locally so that subsequent updates do not require the password.
 
 ![image](https://user-images.githubusercontent.com/678663/74204710-348c2480-4c6c-11ea-82d7-4908fabb296c.png)
 
 #### Command-line options
+
+It is very unlikely that you will need to use them.
 
 By default, on Windows, the program opens a new command-line Window.  Using these options requires that you also give `-createshell false`
 
