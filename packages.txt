@@ -6,4 +6,4 @@ package:github.com/bgentry/go-netrc/netrc
 package:github.com/mitchellh/go-homedir
 package:golang.org/x/crypto/ssh/terminal
 package:github.com/heroku/heroku-go/v5
-package:github.com/Masterminds/semver
+package:github.com/coreos/go-semver/semver

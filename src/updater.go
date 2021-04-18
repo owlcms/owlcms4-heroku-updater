@@ -19,13 +19,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Masterminds/semver"
 	"github.com/bgentry/go-netrc/netrc"
+	"github.com/coreos/go-semver/semver"
 	"github.com/mitchellh/go-homedir"
 
 	terminal "golang.org/x/crypto/ssh/terminal"
 
 	heroku "github.com/heroku/heroku-go/v5"
+	v5 "github.com/heroku/heroku-go/v5"
 )
 
 var (
@@ -83,28 +84,59 @@ func updateAllApps() {
 	h := heroku.NewService(heroku.DefaultClient)
 	apps, _ := h.AppList(context.Background(), nil)
 	for _, app := range apps {
-		appName := app.Name
-		configVars, _ := h.ConfigVarInfoForApp(context.Background(), appName)
-		latestUrl := configVars["OWLCMS_RELEASES"]
-		versionNum := configVars["OWLCMS_VERSION"]
-		if latestUrl != nil {
-			archiveURL, tagName, err := getArchiveName(*latestUrl)
-			if err != nil {
-				fmt.Print(err)
-			} else {
-				ourVersion, _ := semver.NewVersion(tagName)
-				theirVersion, _ := semver.NewVersion(*versionNum)
-				if ourVersion.GreaterThan(theirVersion) || *forceUpdate == "true" {
-					updateApp(&appName, tagName, archiveURL)
-				} else {
-					fmt.Println(appName + " already up to date  (" + *versionNum + " >= " + tagName + " )")
-				}
 
-			}
-		} else {
-			fmt.Println("skipping " + appName)
+		appName := app.Name
+		err := processApp(h, appName)
+		if err != nil {
+			fmt.Println("skipping " + appName + " " + err.Error())
 		}
 	}
+}
+
+func processApp(h *v5.Service, appName string) (err error) {
+	configVars, _ := h.ConfigVarInfoForApp(context.Background(), appName)
+	latestUrl := configVars["OWLCMS_RELEASES"]
+	versionNum := configVars["OWLCMS_VERSION"]
+	if latestUrl == nil {
+		return errors.New("not an owlcms app")
+	}
+	archiveURL, tagName, err := getArchiveName(*latestUrl)
+	if err != nil {
+		return err
+	}
+	ourVersion, err := semver.NewVersion(tagName)
+	if err != nil {
+		return err
+	}
+	forceIfInvalidVersion := false
+	theirVersion, err := semver.NewVersion(*versionNum)
+	if err != nil {
+		if theirVersion == nil {
+			forceIfInvalidVersion = true
+		} else {
+			return errors.New(err.Error() + ": " + *versionNum)
+		}
+	}
+
+	if forceIfInvalidVersion || theirVersion.LessThan(*ourVersion) || *forceUpdate == "true" {
+		updateApp(&appName, tagName, archiveURL)
+	} else {
+		fmt.Println(appName + " already up to date  (" + *versionNum + " >= " + tagName + " )")
+	}
+
+	// ourVersion, err = semver.NewVersion("4.7.4+1")
+	// if err != nil {
+	// 	fmt.Println(err)
+	// } else {
+	// 	theirVersion, _ = semver.NewVersion("4.7.4")
+	// 	if theirVersion.LessThan(*ourVersion) {
+	// 		fmt.Println(theirVersion, "<", ourVersion)
+	// 	} else {
+	// 		fmt.Println(theirVersion, ">=", ourVersion)
+	// 	}
+	// }
+
+	return nil
 }
 
 func updateApp(appName *string, tagName string, archiveURL string) {
